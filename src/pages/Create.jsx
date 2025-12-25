@@ -14,9 +14,12 @@ const Create = () => {
     const { data, setData } = useContext(recipecontext);
     const submitHandler = (FormData) => {
         FormData.id = nanoid();
-        console.log("data from form", FormData);
 
-        setData([...data, FormData])
+        const copydata = [...data];
+        copydata.push(FormData);
+        setData(copydata);
+        localStorage.setItem("recipes", JSON.stringify(copydata));
+        
         toast.success("🎉Recipe created successfully")
         reset();
         navigat("/recipes");

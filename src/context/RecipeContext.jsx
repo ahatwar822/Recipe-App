@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 
 export const recipecontext = createContext(null)
 const RecipeContext = (Props) => {
@@ -128,6 +128,11 @@ const RecipeContext = (Props) => {
             "image_url": "https://cdn.pixabay.com/photo/2024/04/07/05/33/ai-generated-8680634_1280.jpg"
         }
     ])
+    
+   useEffect( () => {
+    setData(JSON.parse(localStorage.getItem("recipes")) || data);
+   }, [])
+    
     console.log("data from contex", data);
 
     return (
@@ -137,4 +142,4 @@ const RecipeContext = (Props) => {
     )
 }
 
-export default RecipeContext
+export default RecipeContext;
